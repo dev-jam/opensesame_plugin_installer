@@ -1,0 +1,76 @@
+---
+API: 2
+OpenSesame: 3.1.9b1
+Platform: posix
+---
+set width 1024
+set uniform_coordinates yes
+set title "New experiment"
+set subject_parity even
+set subject_nr 0
+set start plugin_pack_install_upgrade
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set round_decimals 2
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/home/bob/git/opensesame_plugin_installer"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set canvas_backend xpyriment
+set bidi no
+set background black
+
+define sketchpad done
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="Done!" x=0 y=0 z_index=0
+
+define inline_script install_upgrade_plugins
+	set description "Executes Python code"
+	___run__
+	import pip
+	
+	## action can be: u'install', u'upgrade', u'uninstall'
+	action = u'install'
+	
+	if action == u'install' or action == u'upgrade':
+		pip.main(['install', '--upgrade', 'opensesame_plugin_-_experiment_manager', 'opensesame_plugin_-_audio_low_latency', 'opensesame_plugin_-_parallel_port_trigger', 'opensesame_plugin_-_radboudbox', 'rusocsci'])
+	
+	if action == u'uninstall':
+		pip.main(['uninstall', '-y', 'opensesame_plugin_-_experiment_manager'])
+		pip.main(['uninstall', '-y', 'opensesame_plugin_-_audio_low_latency'])
+		pip.main(['uninstall', '-y', 'opensesame_plugin_-_parallel_port_trigger'])
+		pip.main(['uninstall', '-y', 'opensesame_plugin_-_radboudbox'])
+		pip.main(['uninstall', '-y', 'rusocsci'])
+		#pip.main(['uninstall', '-y', 'pyserial'])
+	__end__
+	set _prepare ""
+
+define sequence plugin_pack_install_upgrade
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run welcome always
+	run install_upgrade_plugins always
+	run done always
+
+define sketchpad welcome
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="This experiment will install / upgrade<br />all plugins and dependencies from my repo." x=0 y=0 z_index=0
+
