@@ -1,7 +1,7 @@
 ---
 API: 2.1
-OpenSesame: 3.2.4
-Platform: nt
+OpenSesame: 3.2.4b1
+Platform: posix
 ---
 set width 1024
 set uniform_coordinates yes
@@ -23,7 +23,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "D:\\"
+set experiment_path "/home/bob/projecten"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -61,46 +61,52 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 6
+	set cycles 7
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
-	setcycle 0 package "opensesame_plugin_-_audio_low_latency"
-	setcycle 0 response_options "i;n;u"
-	setcycle 0 package_name "low latency audio plugin"
 	setcycle 0 opt1 "i = install / upgrade"
-	setcycle 0 opt2 "n = nothing"
+	setcycle 0 opt2 "s = skip"
 	setcycle 0 opt3 "u = uninstall"
-	setcycle 1 package "opensesame_plugin_-_experiment_manager"
-	setcycle 1 response_options "i;n;u"
-	setcycle 1 package_name "experiment manager plugin"
+	setcycle 0 package "opensesame_plugin_-_audio_low_latency"
+	setcycle 0 package_name "low latency audio plugin"
+	setcycle 0 response_options "i;s;u"
 	setcycle 1 opt1 "i = install / upgrade"
-	setcycle 1 opt2 "n = nothing"
+	setcycle 1 opt2 "s = skip"
 	setcycle 1 opt3 "u = uninstall"
-	setcycle 2 package "opensesame_plugin_-_parallel_port_trigger"
-	setcycle 2 response_options "i;n;u"
-	setcycle 2 package_name "parallel port trigger plugin"
+	setcycle 1 package "opensesame_plugin_-_experiment_manager"
+	setcycle 1 package_name "experiment manager plugin"
+	setcycle 1 response_options "i;s;u"
 	setcycle 2 opt1 "i = install / upgrade"
-	setcycle 2 opt2 "n = nothing"
+	setcycle 2 opt2 "s = skip"
 	setcycle 2 opt3 "u = uninstall"
-	setcycle 3 package "opensesame_plugin_-_radboudbox"
-	setcycle 3 response_options "i;n;u"
-	setcycle 3 package_name "radboud box plugin"
+	setcycle 2 package "opensesame_plugin_-_parallel_port_trigger"
+	setcycle 2 package_name "parallel port trigger plugin"
+	setcycle 2 response_options "i;s;u"
 	setcycle 3 opt1 "i = install / upgrade"
-	setcycle 3 opt2 "n = nothing"
+	setcycle 3 opt2 "s = skip"
 	setcycle 3 opt3 "u = uninstall"
-	setcycle 4 package rusocsci
-	setcycle 4 response_options "i;n;u"
-	setcycle 4 package_name "rusocsci package"
+	setcycle 3 package "opensesame_plugin_-_radboudbox"
+	setcycle 3 package_name "radboud box plugin"
+	setcycle 3 response_options "i;s;u"
 	setcycle 4 opt1 "i = install / upgrade"
-	setcycle 4 opt2 "n = nothing"
+	setcycle 4 opt2 "s = skip"
 	setcycle 4 opt3 "u = uninstall"
-	setcycle 5 package sounddevice
-	setcycle 5 response_options "i;n;u"
-	setcycle 5 package_name "sounddevice package"
+	setcycle 4 package rusocsci
+	setcycle 4 package_name "rusocsci package"
+	setcycle 4 response_options "i;s;u"
 	setcycle 5 opt1 "i = install / upgrade"
-	setcycle 5 opt2 "n = nothing"
+	setcycle 5 opt2 "s = skip"
 	setcycle 5 opt3 "u = uninstall"
+	setcycle 5 package sounddevice
+	setcycle 5 package_name "sounddevice package"
+	setcycle 5 response_options "i;s;u"
+	setcycle 6 opt1 "i = install / upgrade"
+	setcycle 6 opt2 "s = skip"
+	setcycle 6 opt3 "u = uninstall"
+	setcycle 6 package "opensesame-plugin-media_player_mpy"
+	setcycle 6 package_name "media player package"
+	setcycle 6 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence
