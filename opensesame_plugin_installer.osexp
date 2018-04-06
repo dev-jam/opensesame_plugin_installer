@@ -1,7 +1,7 @@
 ---
-API: 2
-OpenSesame: 3.1.9b1
-Platform: posix
+API: 2.1
+OpenSesame: 3.2.4
+Platform: nt
 ---
 set width 1024
 set uniform_coordinates yes
@@ -23,7 +23,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "/home/bob/projecten/opensesame/plugins"
+set experiment_path "D:\\"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -37,7 +37,7 @@ define sketchpad done
 	set reset_variables no
 	set duration keypress
 	set description "Displays stimuli"
-	draw textline center=0 color=white font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="Done!" x=-32.0 y=-32.0 z_index=0
+	draw textline center=0 color=white font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="Done!" x=-32 y=-32 z_index=0
 
 define inline_script execute
 	set description "Executes Python code"
@@ -65,39 +65,39 @@ define loop installer_loop
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
-	setcycle 0 package pip
-	setcycle 0 response_options "i;n"
-	setcycle 0 package_name "pip package"
+	setcycle 0 package "opensesame_plugin_-_audio_low_latency"
+	setcycle 0 response_options "i;n;u"
+	setcycle 0 package_name "low latency audio plugin"
 	setcycle 0 opt1 "i = install / upgrade"
 	setcycle 0 opt2 "n = nothing"
-	setcycle 0 opt3 ""
-	setcycle 1 package "opensesame_plugin_-_audio_low_latency"
+	setcycle 0 opt3 "u = uninstall"
+	setcycle 1 package "opensesame_plugin_-_experiment_manager"
 	setcycle 1 response_options "i;n;u"
-	setcycle 1 package_name "low latency audio plugin"
+	setcycle 1 package_name "experiment manager plugin"
 	setcycle 1 opt1 "i = install / upgrade"
 	setcycle 1 opt2 "n = nothing"
 	setcycle 1 opt3 "u = uninstall"
-	setcycle 2 package "opensesame_plugin_-_experiment_manager"
+	setcycle 2 package "opensesame_plugin_-_parallel_port_trigger"
 	setcycle 2 response_options "i;n;u"
-	setcycle 2 package_name "experiment manager plugin"
+	setcycle 2 package_name "parallel port trigger plugin"
 	setcycle 2 opt1 "i = install / upgrade"
 	setcycle 2 opt2 "n = nothing"
 	setcycle 2 opt3 "u = uninstall"
-	setcycle 3 package "opensesame_plugin_-_parallel_port_trigger"
+	setcycle 3 package "opensesame_plugin_-_radboudbox"
 	setcycle 3 response_options "i;n;u"
-	setcycle 3 package_name "parallel port trigger plugin"
+	setcycle 3 package_name "radboud box plugin"
 	setcycle 3 opt1 "i = install / upgrade"
 	setcycle 3 opt2 "n = nothing"
 	setcycle 3 opt3 "u = uninstall"
-	setcycle 4 package "opensesame_plugin_-_radboudbox"
+	setcycle 4 package rusocsci
 	setcycle 4 response_options "i;n;u"
-	setcycle 4 package_name "radboud box plugin"
+	setcycle 4 package_name "rusocsci package"
 	setcycle 4 opt1 "i = install / upgrade"
 	setcycle 4 opt2 "n = nothing"
 	setcycle 4 opt3 "u = uninstall"
-	setcycle 5 package rusocsci
+	setcycle 5 package sounddevice
 	setcycle 5 response_options "i;n;u"
-	setcycle 5 package_name "rusocsci package"
+	setcycle 5 package_name "sounddevice package"
 	setcycle 5 opt1 "i = install / upgrade"
 	setcycle 5 opt2 "n = nothing"
 	setcycle 5 opt3 "u = uninstall"
@@ -126,5 +126,5 @@ define sketchpad welcome
 	set reset_variables no
 	set duration keypress
 	set description "Displays stimuli"
-	draw textline center=0 color=white font_bold=no font_family=mono font_italic=no font_size=24 html=yes show_if=always text="Welcome to the plugin installer.<br /><br />Press 'Space' to continue" x=-224.0 y=-64.0 z_index=0
+	draw textline center=0 color=white font_bold=no font_family=mono font_italic=no font_size=24 html=yes show_if=always text="Welcome to the plugin installer.<br /><br />Press 'Space' to continue" x=-224 y=-64 z_index=0
 
