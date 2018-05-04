@@ -23,7 +23,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "/home/bob/projecten"
+set experiment_path "/home/bob/git/opensesame_plugin_installer"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -61,7 +61,7 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 7
+	set cycles 9
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
@@ -74,32 +74,32 @@ define loop installer_loop
 	setcycle 1 opt1 "i = install / upgrade"
 	setcycle 1 opt2 "s = skip"
 	setcycle 1 opt3 "u = uninstall"
-	setcycle 1 package "opensesame_plugin_-_experiment_manager"
-	setcycle 1 package_name "experiment manager plugin"
+	setcycle 1 package pyalsaaudio
+	setcycle 1 package_name pyalsaaudio
 	setcycle 1 response_options "i;s;u"
 	setcycle 2 opt1 "i = install / upgrade"
 	setcycle 2 opt2 "s = skip"
 	setcycle 2 opt3 "u = uninstall"
-	setcycle 2 package "opensesame_plugin_-_parallel_port_trigger"
-	setcycle 2 package_name "parallel port trigger plugin"
+	setcycle 2 package sounddevice
+	setcycle 2 package_name "sounddevice package"
 	setcycle 2 response_options "i;s;u"
 	setcycle 3 opt1 "i = install / upgrade"
 	setcycle 3 opt2 "s = skip"
 	setcycle 3 opt3 "u = uninstall"
-	setcycle 3 package "opensesame_plugin_-_radboudbox"
-	setcycle 3 package_name "radboud box plugin"
+	setcycle 3 package PyAudio
+	setcycle 3 package_name PyAudio
 	setcycle 3 response_options "i;s;u"
 	setcycle 4 opt1 "i = install / upgrade"
 	setcycle 4 opt2 "s = skip"
 	setcycle 4 opt3 "u = uninstall"
-	setcycle 4 package rusocsci
-	setcycle 4 package_name "rusocsci package"
+	setcycle 4 package "opensesame_plugin_-_radboudbox"
+	setcycle 4 package_name "radboud box plugin"
 	setcycle 4 response_options "i;s;u"
 	setcycle 5 opt1 "i = install / upgrade"
 	setcycle 5 opt2 "s = skip"
 	setcycle 5 opt3 "u = uninstall"
-	setcycle 5 package sounddevice
-	setcycle 5 package_name "sounddevice package"
+	setcycle 5 package rusocsci
+	setcycle 5 package_name "rusocsci package"
 	setcycle 5 response_options "i;s;u"
 	setcycle 6 opt1 "i = install / upgrade"
 	setcycle 6 opt2 "s = skip"
@@ -107,6 +107,18 @@ define loop installer_loop
 	setcycle 6 package "opensesame-plugin-media_player_mpy"
 	setcycle 6 package_name "media player package"
 	setcycle 6 response_options "i;s;u"
+	setcycle 7 opt1 "i = install / upgrade"
+	setcycle 7 opt2 "s = skip"
+	setcycle 7 opt3 "u = uninstall"
+	setcycle 7 package "opensesame_plugin_-_experiment_manager"
+	setcycle 7 package_name "experiment manager plugin"
+	setcycle 7 response_options "i;s;u"
+	setcycle 8 opt1 "i = install / upgrade"
+	setcycle 8 opt2 "s = skip"
+	setcycle 8 opt3 "u = uninstall"
+	setcycle 8 package "opensesame_plugin_-_parallel_port_trigger"
+	setcycle 8 package_name "parallel port trigger plugin"
+	setcycle 8 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence
