@@ -61,7 +61,7 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 9
+	set cycles 10
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
@@ -119,6 +119,12 @@ define loop installer_loop
 	setcycle 8 package "opensesame_plugin_-_parallel_port_trigger"
 	setcycle 8 package_name "parallel port trigger plugin"
 	setcycle 8 response_options "i;s;u"
+	setcycle 9 opt1 "i = install / upgrade"
+	setcycle 9 opt2 "s = skip"
+	setcycle 9 opt3 "u = uninstall"
+	setcycle 9 package Expyriment
+	setcycle 9 package_name Expyriment
+	setcycle 9 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence
