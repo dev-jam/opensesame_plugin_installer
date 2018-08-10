@@ -23,7 +23,6 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "C:\\Users\\bob\\Downloads\\opensesame_plugin_installer-master (2)\\opensesame_plugin_installer-master"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -49,7 +48,7 @@ define inline_script execute
 	key, time = my_keyboard.get_key(keylist=keylist)
 	
 	if key == u'i':
-		pip.main(['install', '--upgrade', var.package])
+		pip.main(['install', '--upgrade', '--user', var.package])
 	elif key == u'u':
 		pip.main(['uninstall', '-y', var.package])
 	__end__
