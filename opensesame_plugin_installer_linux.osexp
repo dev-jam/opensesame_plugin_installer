@@ -48,7 +48,7 @@ define inline_script execute
 	key, time = my_keyboard.get_key(keylist=keylist)
 	
 	if key == u'i':
-		pip.main(['install', '--upgrade', '--user', var.package])
+		pip.main(['install', '--no-deps', '--upgrade', '--user', var.package])
 	elif key == u'u':
 		pip.main(['uninstall', '-y', var.package])
 	__end__
@@ -91,7 +91,7 @@ define loop installer_loop
 	setcycle 4 opt1 "i = install / upgrade"
 	setcycle 4 opt2 "s = skip"
 	setcycle 4 opt3 "u = uninstall"
-	setcycle 4 package "opensesame-plugin-media_player_mpy"
+	setcycle 4 package "mediadecoder moviepy opensesame-plugin-media-player-mpy"
 	setcycle 4 package_name "media player package"
 	setcycle 4 response_options "i;s;u"
 	setcycle 5 opt1 "i = install / upgrade"
