@@ -48,7 +48,7 @@ define inline_script execute
 	key, time = my_keyboard.get_key(keylist=keylist)
 	
 	if key == u'i':
-		pip.main(['install', '--no-deps', '--upgrade', '--user', var.package])
+		pip.main(['install', '--upgrade', '--user', var.package])
 	elif key == u'u':
 		pip.main(['uninstall', '-y', var.package])
 	__end__
