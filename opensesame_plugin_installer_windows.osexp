@@ -1,7 +1,7 @@
 ---
 API: 2.1
-OpenSesame: 3.2.4
-Platform: nt
+OpenSesame: 3.2.8b1
+Platform: posix
 ---
 set width 1024
 set uniform_coordinates yes
@@ -13,7 +13,10 @@ set sound_sample_size -16
 set sound_freq 48000
 set sound_channels 2
 set sound_buf_size 1024
+set sampler_backend legacy
 set round_decimals 2
+set mouse_backend legacy
+set keyboard_backend legacy
 set height 768
 set fullscreen no
 set form_clicks no
@@ -23,11 +26,14 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
+set experiment_path "/home/bob/Desktop"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
 set compensation 0
-set canvas_backend xpyriment
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend legacy
 set bidi no
 set background black
 
@@ -47,10 +53,26 @@ define inline_script execute
 	my_keyboard = keyboard()
 	key, time = my_keyboard.get_key(keylist=keylist)
 	
-	if key == u'i':
-		pip.main(['install', '--upgrade', var.package])
-	elif key == u'u':
-		pip.main(['uninstall', '-y', var.package])
+	def run(cmd):
+		proc = subprocess.Popen(cmd,
+			stdout = subprocess.PIPE,
+			stderr = subprocess.PIPE,
+		)
+		stdout, stderr = proc.communicate()
+	 
+		return proc.returncode, stdout, stderr
+	
+	
+	if key in keys:
+		if key == u'i':
+			cmd = [sys.executable, "-m", "pip", "install", "--upgrade", var.package]
+		elif key == u'u':
+			cmd = [sys.executable, "-m", "pip", "uninstall", "-y", var.package]
+	
+		code, out, err = run(cmd)
+		print("out: '{}'".format(out))
+		print("err: '{}'".format(err))
+		print("exit: {}".format(code))
 	__end__
 	set _prepare ""
 
@@ -60,7 +82,7 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 5
+	set cycles 6
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
@@ -94,6 +116,12 @@ define loop installer_loop
 	setcycle 4 package rusocsci
 	setcycle 4 package_name "rusocsci package"
 	setcycle 4 response_options "i;s;u"
+	setcycle 5 opt1 "i = install / upgrade"
+	setcycle 5 opt2 "s = skip"
+	setcycle 5 opt3 "u = uninstall"
+	setcycle 5 package "tobii-research"
+	setcycle 5 package_name "tobii-research package"
+	setcycle 5 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence
