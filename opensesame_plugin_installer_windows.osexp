@@ -47,7 +47,8 @@ define sketchpad done
 define inline_script execute
 	set description "Executes Python code"
 	___run__
-	import pip
+	import subprocess
+	import sys
 	
 	keylist = var.response_options.split(u';')
 	my_keyboard = keyboard()
@@ -65,7 +66,7 @@ define inline_script execute
 	
 	if key in keys:
 		if key == u'i':
-			cmd = [sys.executable, "-m", "pip", "install", "--upgrade", var.package]
+			cmd = [sys.executable, "-m", "pip", "install", "--upgrade", "--user", var.package]
 		elif key == u'u':
 			cmd = [sys.executable, "-m", "pip", "uninstall", "-y", var.package]
 	
