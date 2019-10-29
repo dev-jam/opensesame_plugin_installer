@@ -53,7 +53,9 @@ define inline_script execute
 	keylist = var.response_options.split(u';')
 	my_keyboard = keyboard()
 	key, time = my_keyboard.get_key(keylist=keylist)
-	
+
+	keys = [u'i', u'u']
+
 	def run(cmd):
 		proc = subprocess.Popen(cmd,
 			stdout = subprocess.PIPE,
