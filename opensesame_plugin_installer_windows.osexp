@@ -1,6 +1,6 @@
 ---
 API: 2.1
-OpenSesame: 3.2.8b1
+OpenSesame: 3.3.6b1
 Platform: posix
 ---
 set width 1024
@@ -26,7 +26,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "/home/bob/Desktop"
+set experiment_path "/home/bob/git/opensesame_plugin_installer"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -53,24 +53,39 @@ define inline_script execute
 	keylist = var.response_options.split(u';')
 	my_keyboard = keyboard()
 	key, time = my_keyboard.get_key(keylist=keylist)
-
 	keys = [u'i', u'u']
-
+	
+	
 	def run(cmd):
-		proc = subprocess.Popen(cmd,
-			stdout = subprocess.PIPE,
-			stderr = subprocess.PIPE,
-		)
+		proc = subprocess.Popen(
+			cmd,
+			stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE)
+	
 		stdout, stderr = proc.communicate()
-	 
+	
 		return proc.returncode, stdout, stderr
 	
 	
 	if key in keys:
 		if key == u'i':
-			cmd = [sys.executable, "-m", "pip", "install", "--upgrade", "--user", var.package]
+			cmd = [
+				sys.executable,
+				"-m",
+				"pip",
+				"install",
+				"--upgrade",
+				"--user",
+				var.package]
+	
 		elif key == u'u':
-			cmd = [sys.executable, "-m", "pip", "uninstall", "-y", var.package]
+			cmd = [
+				sys.executable,
+				"-m",
+				"pip",
+				"uninstall",
+				"-y",
+				var.package]
 	
 		code, out, err = run(cmd)
 		print("out: '{}'".format(out))
@@ -85,7 +100,7 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 6
+	set cycles 11
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
@@ -125,6 +140,36 @@ define loop installer_loop
 	setcycle 5 package "tobii-research"
 	setcycle 5 package_name "tobii-research package"
 	setcycle 5 response_options "i;s;u"
+	setcycle 6 opt1 "i = install / upgrade"
+	setcycle 6 opt2 "s = skip"
+	setcycle 6 opt3 "u = uninstall"
+	setcycle 6 package sounddevice
+	setcycle 6 package_name "sounddevice package"
+	setcycle 6 response_options "i;s;u"
+	setcycle 7 opt1 "i = install / upgrade"
+	setcycle 7 opt2 "s = skip"
+	setcycle 7 opt3 "u = uninstall"
+	setcycle 7 package "PyAudio-0.2.11-cp27-cp27m-win32.whl"
+	setcycle 7 package_name "pyaudio python2.7 32bit"
+	setcycle 7 response_options "i;s;u"
+	setcycle 8 opt1 "i = install / upgrade"
+	setcycle 8 opt2 "s = skip"
+	setcycle 8 opt3 "u = uninstall"
+	setcycle 8 package "PyAudio-0.2.11-cp37-cp37m-win_amd64.whl"
+	setcycle 8 package_name "pyaudio python3.7 64bit"
+	setcycle 8 response_options "i;s;u"
+	setcycle 9 opt1 "i = install / upgrade"
+	setcycle 9 opt2 "s = skip"
+	setcycle 9 opt3 "u = uninstall"
+	setcycle 9 package "PyAudio-0.2.11-cp38-cp38m-win_amd64.whl"
+	setcycle 9 package_name "pyaudio python3.8 64bit"
+	setcycle 9 response_options "i;s;u"
+	setcycle 10 opt1 "i = install / upgrade"
+	setcycle 10 opt2 "s = skip"
+	setcycle 10 opt3 "u = uninstall"
+	setcycle 10 package "PyAudio-0.2.11-cp39-cp39m-win_amd64.whl"
+	setcycle 10 package_name "pyaudio python3.9 64bit"
+	setcycle 10 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence

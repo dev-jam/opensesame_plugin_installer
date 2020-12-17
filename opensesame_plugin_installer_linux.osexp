@@ -1,6 +1,6 @@
 ---
 API: 2.1
-OpenSesame: 3.3.5
+OpenSesame: 3.3.6b1
 Platform: posix
 ---
 set width 1024
@@ -53,24 +53,39 @@ define inline_script execute
 	keylist = var.response_options.split(u';')
 	my_keyboard = keyboard()
 	key, time = my_keyboard.get_key(keylist=keylist)
-	
 	keys = [u'i', u'u']
 	
+	
 	def run(cmd):
-		proc = subprocess.Popen(cmd,
-			stdout = subprocess.PIPE,
-			stderr = subprocess.PIPE,
-		)
+		proc = subprocess.Popen(
+			cmd,
+			stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE)
+	
 		stdout, stderr = proc.communicate()
-	 
+	
 		return proc.returncode, stdout, stderr
 	
 	
 	if key in keys:
 		if key == u'i':
-			cmd = [sys.executable, "-m", "pip", "install", "--upgrade", "--user", var.package]
+			cmd = [
+				sys.executable,
+				"-m",
+				"pip",
+				"install",
+				"--upgrade",
+				"--user",
+				var.package]
+	
 		elif key == u'u':
-			cmd = [sys.executable, "-m", "pip", "uninstall", "-y", var.package]
+			cmd = [
+				sys.executable,
+				"-m",
+				"pip",
+				"uninstall",
+				"-y",
+				var.package]
 	
 		code, out, err = run(cmd)
 		print("out: '{}'".format(out))
