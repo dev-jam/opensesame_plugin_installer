@@ -1,6 +1,6 @@
 ---
 API: 2.1
-OpenSesame: 3.3.6b1
+OpenSesame: 3.3.13a5
 Platform: posix
 ---
 set width 1024
@@ -100,7 +100,7 @@ define loop installer_loop
 	set repeat 1
 	set order sequential
 	set description "Repeatedly runs another item"
-	set cycles 11
+	set cycles 16
 	set continuous no
 	set break_if_on_first yes
 	set break_if never
@@ -149,27 +149,57 @@ define loop installer_loop
 	setcycle 7 opt1 "i = install / upgrade"
 	setcycle 7 opt2 "s = skip"
 	setcycle 7 opt3 "u = uninstall"
-	setcycle 7 package "PyAudio-0.2.11-cp27-cp27m-win32.whl"
-	setcycle 7 package_name "pyaudio python2.7 32bit"
+	setcycle 7 package "mediadecoder moviepy opensesame-plugin-media-player-mpy"
+	setcycle 7 package_name "movie player plugin"
 	setcycle 7 response_options "i;s;u"
 	setcycle 8 opt1 "i = install / upgrade"
 	setcycle 8 opt2 "s = skip"
 	setcycle 8 opt3 "u = uninstall"
-	setcycle 8 package "PyAudio-0.2.11-cp37-cp37m-win_amd64.whl"
-	setcycle 8 package_name "pyaudio python3.7 64bit"
+	setcycle 8 package "psychopy-plugin-opensesame"
+	setcycle 8 package_name "psychopy plugin"
 	setcycle 8 response_options "i;s;u"
 	setcycle 9 opt1 "i = install / upgrade"
 	setcycle 9 opt2 "s = skip"
 	setcycle 9 opt3 "u = uninstall"
-	setcycle 9 package "PyAudio-0.2.11-cp38-cp38m-win_amd64.whl"
-	setcycle 9 package_name "pyaudio python3.8 64bit"
+	setcycle 9 package rusocsci
+	setcycle 9 package_name "rusocsci package"
 	setcycle 9 response_options "i;s;u"
 	setcycle 10 opt1 "i = install / upgrade"
 	setcycle 10 opt2 "s = skip"
 	setcycle 10 opt3 "u = uninstall"
-	setcycle 10 package "PyAudio-0.2.11-cp39-cp39m-win_amd64.whl"
-	setcycle 10 package_name "pyaudio python3.9 64bit"
+	setcycle 10 package "tobii-research"
+	setcycle 10 package_name "tobii-research package"
 	setcycle 10 response_options "i;s;u"
+	setcycle 11 opt1 "i = install / upgrade"
+	setcycle 11 opt2 "s = skip"
+	setcycle 11 opt3 "u = uninstall"
+	setcycle 11 package sounddevice
+	setcycle 11 package_name "sounddevice package"
+	setcycle 11 response_options "i;s;u"
+	setcycle 12 opt1 "i = install / upgrade"
+	setcycle 12 opt2 "s = skip"
+	setcycle 12 opt3 "u = uninstall"
+	setcycle 12 package "PyAudio-0.2.11-cp37-cp37m-win_amd64.whl"
+	setcycle 12 package_name "pyaudio python3.7 64bit"
+	setcycle 12 response_options "i;s;u"
+	setcycle 13 opt1 "i = install / upgrade"
+	setcycle 13 opt2 "s = skip"
+	setcycle 13 opt3 "u = uninstall"
+	setcycle 13 package "PyAudio-0.2.11-cp38-cp38m-win_amd64.whl"
+	setcycle 13 package_name "pyaudio python3.8 64bit"
+	setcycle 13 response_options "i;s;u"
+	setcycle 14 opt1 "i = install / upgrade"
+	setcycle 14 opt2 "s = skip"
+	setcycle 14 opt3 "u = uninstall"
+	setcycle 14 package "PyAudio-0.2.11-cp39-cp39m-win_amd64.whl"
+	setcycle 14 package_name "pyaudio python3.9 64bit"
+	setcycle 14 response_options "i;s;u"
+	setcycle 15 opt1 "i = install / upgrade"
+	setcycle 15 opt2 "s = skip"
+	setcycle 15 opt3 "u = uninstall"
+	setcycle 15 package "PyAudio-0.2.11-cp27-cp27m-win32.whl"
+	setcycle 15 package_name "pyaudio python2.7 32bit"
+	setcycle 15 response_options "i;s;u"
 	run installer_sequence
 
 define sequence installer_sequence
