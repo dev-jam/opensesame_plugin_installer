@@ -1,2 +1,2 @@
 # opensesame_plugin_installer
-OpenSesame experiment for installing, upgrading and uninstalling my plugin pack
+OpenSesame Plugin and library installer for Linux and Windows (and maybe MacOS)
